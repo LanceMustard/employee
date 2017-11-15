@@ -3,7 +3,7 @@ import { reducer as formReducer } from 'redux-form';
 import EmployeesReducer from './employees';
 
 const rootReducer = combineReducers({
-  posts: EmployeesReducer,
+  employees: EmployeesReducer,
   form: formReducer
 });
 
