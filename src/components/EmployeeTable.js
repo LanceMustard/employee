@@ -1,39 +1,39 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import './../styles/site.css';
 import styled, { css } from 'styled-components';
 
-const TableRow = styled.div`
+// basic example of using styled-components
+const EmployeeRecord = styled.button`
   display: inline-block;
   border-radius: 3px;
   padding: 0.5rem 0;
   margin: 0.5rem 1rem;
   width: 11rem;
   background: transparent;
-  color: white;
-  border: 2px solid white;
+  color: palevioletred;
+  border: 2px solid palevioletred;
 
   ${props => props.selected && css`
-    background: white;
-    color: palevioletred;
+    background: palevioletred;
+    color: white;
   `}
 `
 
 class EmployeeTable extends Component {
   renderRow(employee, idx){
     return (
-      <TableRow key={idx}>
-        <Link to={`/${employee.Id}`}>
-          {employee.Name}
-        </Link>
-      </TableRow>
+      <EmployeeRecord 
+        key={idx} 
+        selected={employee.id === this.props.selected.id}
+        onClick={() => this.props.onSelect(employee.id)}>
+        {employee.name}
+      </EmployeeRecord>
     );
   }
   render() {
     return (
-      <div>
-        { this.props.employees.map(this.renderRow) }
-      </div>
+      <ul>
+        { this.props.employees.map(this.renderRow.bind(this)) }
+      </ul>
     );
   }
 }
